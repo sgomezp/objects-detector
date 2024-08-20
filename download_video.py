@@ -45,14 +45,14 @@ def download_video(url, start_time, end_time, output_file):
         ydl.download([url])
 
 
-video_url = 'https://www.youtube.com/watch?v=JKsmzu6rX2o'
+video_url = 'https://www.youtube.com/watch?v=jGSU81zrNbA'
 
 
 # Tiempo de inicio y fin en formato hh:mm:ss
-start_time = '00:02:38'
-end_time = '00:03:30'
+start_time = '00:01:12'
+end_time = '00:02:18'
 
-output_file = 'output_cars.mp4'
+output_file = 'output_orlando.mp4'
 
 download_video(video_url,start_time,end_time,output_file)
 
