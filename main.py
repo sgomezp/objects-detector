@@ -5,10 +5,10 @@ import cv2
 # Load yolov8 model
 model = YOLO('yolov8n.pt')
 
-classes_of_interest = [0,16] # 0 = persons 16 = dogs
+classes_of_interest = [2,5,7,9] # 2 = car 5 = bus,  7= truck, 8= traffic light
 
 # load video
-video_path = './test.mp4'
+video_path = './output_cars.mp4'
 cap = cv2.VideoCapture(video_path)
 
 ret = True
