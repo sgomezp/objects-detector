@@ -8,12 +8,12 @@ def main():
 
     classes_of_interest = [0, 2, 5, 7, 9]  # 0 = person, 2 = car, 5 = bus, 7 = truck, 9 = traffic light
 
-    # dictionary that save the color for each label
-    class_colors = {'person':(0,0,255),     # blue
+    # dictionary that save the color for each label (BGR)
+    class_colors = {'person':(255,0,0),     # blue
                      'car':(0, 255, 0),     # verde
-                     'bus':(255, 255, 0),   # Amarillo
-                     'truck':(255, 0, 0),   # Naranja
-                     'traffic light':(255, 165, 0)  # Rojo
+                     'bus':(0, 255, 255),   # Amarillo
+                     'truck':(0, 0, 255),   # Rojo
+                     'traffic light':(0, 165, 255)  # Naranja
                      }
 
 
@@ -61,7 +61,7 @@ def main():
             label_y = int(y1) - 10 if int(y1) - 10 > 10 else int(y1) + 10
             cv2.rectangle(
                 frame, (int(x1), label_y - label_size[1] - 10), (int(x1) + label_size[0], label_y + label_size[1] - 10),
-                (255, 0, 0), cv2.FILLED)
+                color, cv2.FILLED)
             cv2.putText(frame, label_text, (int(x1), label_y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
 
         # Display the frame
