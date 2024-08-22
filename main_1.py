@@ -15,9 +15,11 @@ class_colors = {
     'traffic light': (0, 165, 255)  # naranja
 }
 
+
 def process_video():
     video_path = './static/output_orlando.mp4'
     cap = cv2.VideoCapture(video_path)
+
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -25,7 +27,7 @@ def process_video():
             break
 
         # Detectar y rastrear objetos
-        results = model.track(source=frame, classes=classes_of_interest, conf=0.60, persist=True)
+        results = model.track(source=frame, classes=classes_of_interest, conf=0.65, persist=True)
 
         for result in results[0].boxes:
             box = result.xyxy[0].cpu().numpy()
@@ -51,6 +53,7 @@ def process_video():
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
     cap.release()
+
 
 @app.route('/')
 def home():
