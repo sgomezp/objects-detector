@@ -9,7 +9,7 @@ def configure_routes(app):
     @app.route('/')
     def home():
         videos = os.listdir(video_dir)
-        return render_template('home.html', videos=videos)
+        return render_template("home.html", videos=videos)
 
     @app.route('/download_and_process', methods=['POST'])
     def download_and_process():
@@ -34,7 +34,7 @@ def configure_routes(app):
         if not video_name:
             return redirect(url_for('home'))
 
-        video_path = os.path.join(video_dir, video_name)
+        #video_path = os.path.join(video_dir, video_name)
         return render_template('show_video.html', video_name=video_name)
 
     @app.route('/video_feed')

@@ -16,7 +16,6 @@ class_colors = {                  # Colors are in BGR format
 def download_video(url, start_time, end_time, output_file):
     ydl_opts = {
         'format': 'bestvideo[height<=480][fps<=30]/best[height<=480][fps<=30]',
-        #'format': 'bestvideo+bestaudio[ext=mp4]/best[ext=mp4]',
         'quiet': True,
         'noplaylist': True,
         'outtmpl': output_file,  # Output filename
@@ -26,7 +25,7 @@ def download_video(url, start_time, end_time, output_file):
             '-vf', 'scale=1280:720',  # Reescalar a 720p
             '-c:v', 'libx264',  # Codificar en H.264
             '-crf', '28',  # Factor de calidad, 28 es una buena referencia para reducir tamaño
-            '-preset', 'fast'  # Preset para calidad de compresión
+            '-preset', 'fast',  # Preset para calidad de compresión
             '-an',  # Remove audio stream
         ],
         'merge_output_format': 'mp4',  # Asegura que la salida sea en formato MP4
