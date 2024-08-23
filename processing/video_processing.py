@@ -1,6 +1,8 @@
 import cv2
 from ultralytics import YOLO
 import yt_dlp
+import os
+import subprocess
 
 # Configuración del modelo YOLO y otros parámetros
 model = YOLO('yolov8n.pt')
@@ -14,24 +16,45 @@ class_colors = {                  # Colors are in BGR format
 }
 
 def download_video(url, start_time, end_time, output_file):
+    # Nombre del archivo temporal
+    temp_file = output_file + "_temp.mp4"
+
+    # Opciones para yt-dlp
     ydl_opts = {
         'format': 'bestvideo[height<=480][fps<=30]/best[height<=480][fps<=30]',
         'quiet': True,
         'noplaylist': True,
-        'outtmpl': output_file,  # Output filename
-        'postprocessor_args': [
-            '-ss', start_time,  # Start time
-            '-to', end_time,    # End time
-            '-vf', 'scale=1280:720',  # Reescalar a 720p
-            '-c:v', 'libx264',  # Codificar en H.264
-            '-crf', '28',  # Factor de calidad, 28 es una buena referencia para reducir tamaño
-            '-preset', 'fast',  # Preset para calidad de compresión
-            '-an',  # Remove audio stream
-        ],
-        'merge_output_format': 'mp4',  # Asegura que la salida sea en formato MP4
+        'outtmpl': temp_file,  # Nombre del archivo de salida temporal
     }
+
+    # Descargar el video completo
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
+
+    # Verificar si el archivo temporal fue creado correctamente
+    if not os.path.exists(temp_file):
+        print(f"Error: El archivo temporal {temp_file} no fue creado.")
+        return
+
+    # Usar ffmpeg para recortar el video
+    command = [
+        'ffmpeg',
+        '-i', temp_file,
+        '-ss', start_time,
+        '-to', end_time,
+        '-vf', 'scale=1280:720',
+        '-c:v', 'libx264',
+        '-crf', '28',
+        '-preset', 'fast',
+        '-an',  # Eliminar el audio
+        output_file
+    ]
+
+    subprocess.run(command)
+
+    # Eliminar el archivo temporal
+    os.remove(temp_file)
+
 
 def process_video(video_path):
     cap = cv2.VideoCapture(video_path)
