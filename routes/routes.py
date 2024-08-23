@@ -11,13 +11,17 @@ def configure_routes(app):
         videos = os.listdir(video_dir)
         return render_template('home.html', videos=videos)
 
-    @app.route('/download', methods=['POST'])
+    @app.route('/download_and_process', methods=['POST'])
     def download_and_process():
         url = request.form['url']
         start_time = request.form['start_time']
         end_time = request.form['end_time']
         output_name = request.form['output_name']
         output_file = os.path.join(video_dir, output_name + '.mp4')
+
+        print(f"URL: {url}")
+        print(f"Start Time: {start_time}")
+        print(f"End Time: {end_time}")
 
         # Descargar y procesar el video
         download_video(url, start_time, end_time, output_file)
@@ -39,3 +43,4 @@ def configure_routes(app):
         video_path = os.path.join(video_dir, video_name)
         return Response(process_video(video_path),
                         mimetype='multipart/x-mixed-replace; boundary=frame')
+
