@@ -26,7 +26,8 @@ def configure_routes(app):
         # Descargar y procesar el video
         download_video(url, start_time, end_time, output_file)
 
-        return redirect(url_for('home'))
+        #return redirect(url_for('home'))
+        return redirect(url_for('play_video', video=output_name + '.mp4'))
 
     @app.route('/play_video')
     def play_video():
