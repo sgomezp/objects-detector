@@ -2,6 +2,7 @@ import os
 from flask import render_template, request, redirect, url_for, Response
 from processing.video_processing import download_video, process_video
 
+
 video_dir = './static/videos/'  # Directorio donde están almacenados los videos
 
 def configure_routes(app):
