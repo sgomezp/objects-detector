@@ -1,5 +1,5 @@
 import os
-from flask import render_template, request, redirect, url_for, Response
+from flask import render_template, request, redirect, url_for, Response, flash
 from processing.video_processing import download_video, process_video
 
 
@@ -9,7 +9,14 @@ def configure_routes(app):
 
     @app.route('/')
     def home():
-        videos = os.listdir(video_dir)
+        try:
+            videos = os.listdir(video_dir)
+        except FileNotFoundError:
+            flash("Error: The video directory does not exist.", 'danger')
+            videos = []
+        except Exception as e:
+            flash(f"Unexpected error: {str(e)}", 'danger')
+            videos = []
         return render_template("home.html", videos=videos)
 
     @app.route('/download_and_process', methods=['POST'])
@@ -20,29 +27,38 @@ def configure_routes(app):
         output_name = request.form['output_name']
         output_file = os.path.join(video_dir, output_name + '.mp4')
 
-        print(f"URL: {url}")
-        print(f"Start Time: {start_time}")
-        print(f"End Time: {end_time}")
+        try:
+            # Descargar y procesar el video
+            download_video(url, start_time, end_time, output_file)
+            flash("Video downloaded and processed successfully.", 'success')
+        except Exception as e:
+            flash(f"Error during video download and processing: {str(e)}", 'danger')
+            return redirect(url_for('home'))
 
-        # Descargar y procesar el video
-        download_video(url, start_time, end_time, output_file)
-
-        #return redirect(url_for('home'))
         return redirect(url_for('play_video', video=output_name + '.mp4'))
 
     @app.route('/play_video')
     def play_video():
         video_name = request.args.get('video')
         if not video_name:
+            flash(f"Error: video {video_name} not found.", 'danger')
             return redirect(url_for('home'))
 
-        #video_path = os.path.join(video_dir, video_name)
         return render_template('show_video.html', video_name=video_name)
 
     @app.route('/video_feed')
     def video_feed():
         video_name = request.args.get('video')
         video_path = os.path.join(video_dir, video_name)
-        return Response(process_video(video_path),
+
+        if not os.path.exists(video_path):
+            flash(f"Error: video {video_name} not found.", 'danger')
+            return redirect(url_for('home'))
+
+        try:
+            return Response(process_video(video_path),
                         mimetype='multipart/x-mixed-replace; boundary=frame')
+        except Exception as e:
+            flash(f"Error processing video: {str(e)}", 'danger')
+            return redirect(url_for('home'))
 
