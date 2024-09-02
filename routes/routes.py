@@ -27,10 +27,23 @@ def configure_routes(app):
         output_name = request.form['output_name']
         output_file = os.path.join(video_dir, output_name + '.mp4')
 
+        # Check if the video exists
+        if os.path.exists(output_file):
+            flash(
+                f"Error: A video with the name '{output_name}' already exists. Please choose a different name.",
+                'danger')
+            return render_template(
+                "home.html",
+                videos=os.listdir(video_dir),
+                url=url,
+                start_time=start_time,
+                end_time=end_time,
+                output_name=output_name
+            )
+
         try:
             # Descargar y procesar el video
             download_video(url, start_time, end_time, output_file)
-            flash("Video downloaded and processed successfully.", 'success')
         except Exception as e:
             flash(f"Error during video download and processing: {str(e)}", 'danger')
             return redirect(url_for('home'))
@@ -61,4 +74,6 @@ def configure_routes(app):
         except Exception as e:
             flash(f"Error processing video: {str(e)}", 'danger')
             return redirect(url_for('home'))
+
+
 
