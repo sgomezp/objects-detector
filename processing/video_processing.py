@@ -7,7 +7,7 @@ import os
 import subprocess
 
 # YOLO model configuration and other parameters
-model = YOLO('yolov8n.pt')
+model = YOLO('./models/yolov8n.pt')
 classes_of_interest = [0, 2, 5, 7, 9]
 class_colors = {                  # Colors are in BGR format
     'person': (255, 0, 0),        # azul

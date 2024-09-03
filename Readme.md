@@ -60,6 +60,14 @@ Replace your_secret_key_here with a strong, unique secret key.
      SECRET_KEY=your_secret_key_here
 ~~~
 
+### Model Download
+Depending on your needs, you may choose from different YOLOv8 model sizes (small, medium, or large).
+1. **Download the Model**: 
+   - You need to download the YOLOv8 model weights that you intend to use (small, medium, or large).
+   - Place the downloaded model file in the **models/** directory of your project to ensure that your application can access it.
+
+
+
 ### Run the application
 ~~~
     python main.py
@@ -83,9 +91,19 @@ Open a web browser and go to http://127.0.0.1:5000
 3. View Processed Videos:
    - Select any of the saved videos from the dropdown list to play it on the web interface
 
+
+## Image Resolution Configuration
+To improve processing speed, the resolution of the processed video has been reduced. The application uses the 
+following format to ensure that the video is downloaded with a lower resolution.
+```plaintext
+format': 'bestvideo[height<=480][fps<=30]/best[height<=480][fps<=30]'
+```
+
 ## Folder Structure
 ```plaintext
 ├── main.py                   # Main Flask application file
+├── models                    # Flask routes
+│   └── yolov8n.pt            # Model (not included in the repo)
 ├── routes                    # Flask routes
 │   └── routes.py
 ├── processing
