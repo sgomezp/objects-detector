@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/sgomezp/objects-detector/static/images/yolov8_logo.png" alt="Logo YOLOv8" width="100"/>
+  <img src="https://github.com/sgomezp/objects-detector/blob/dev/static/images/yolov8_logo.png" alt="Logo YOLOv8" width="100"/>
 </p>
 
 
