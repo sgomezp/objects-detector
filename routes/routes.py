@@ -10,7 +10,9 @@ def configure_routes(app):
     @app.route('/')
     def home():
         try:
-            videos = os.listdir(video_dir)
+            all_files = os.listdir(video_dir)
+            #videos = os.listdir(video_dir)
+            videos = [vid for vid in all_files if vid.endswith(('.mp4', '.avi', '.mov'))]
         except FileNotFoundError:
             flash("Error: The video directory does not exist.", 'danger')
             videos = []
