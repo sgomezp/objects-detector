@@ -12,8 +12,8 @@ def configure_routes(app):
         try:
             # filter only videos
             all_files = os.listdir(video_dir)
-            videos = [f for f in all_files if f.endswith(('.mp4', '.avi', '.mov'))]
-            videos = os.listdir(video_dir)
+            videos = [vid for vid in all_files if vid.endswith(('.mp4', '.avi', '.mov'))]
+
         except FileNotFoundError:
             flash("Error: The video directory does not exist.", 'danger')
             videos = []

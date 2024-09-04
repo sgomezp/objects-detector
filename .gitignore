@@ -240,5 +240,5 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # My files
-statics/videos/*
-!statics/videos/.gitkeep
+static/videos/*
+!static/videos/.gitkeep
