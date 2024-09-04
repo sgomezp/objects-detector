@@ -23,7 +23,8 @@ are stored in the static/videos directory, where they can be selected and viewed
   - Download and process the video clip for object detection.
   - View a list of saved video clips and select one to play.
 ### Version 2.0 (Planned)
-- **Custom Object Selection**: Users will be able to choose which specific objects they want to detect in the video.
+- **Custom Object Selection**: users will be able to choose which specific objects they want to detect in the video.
+- **Improved Interface:** the user interface will be enhanced to provide a more seamless and user-friendly experience.
 
 ## Installation
 ### Prerequisites
@@ -40,11 +41,15 @@ are stored in the static/videos directory, where they can be selected and viewed
 2. **Create and activate a virtual environment**
 3. **Install dependencies**:
 
-    Before installing dependencies, please note that to make the application work correctly, you need to downgrade
-    the torch and torchvision packages:
+    Before installing dependencies, please note that the required versions of `torch` and
+   `torchvision` have already been specified in the `requirements.txt` file. These versions are necessary for 
+    the application to function correctly::
 
-    - Downgrade torch to version 2.2.0
-    - Downgrade torchvision to version 0.17.0
+    - `torch` has been set to version 2.2.0
+    - `torchvision` has been set to version 0.17.0
+
+    No additional downgrades are needed; simply install the dependencies as listed in the `requirements.txt`.
+
 
 ~~~
      pip install -r requirements.txt
@@ -76,19 +81,19 @@ Depending on your needs, you may choose from different YOLOv8 model sizes (small
 Open a web browser and go to http://127.0.0.1:5000
 
 ## Usage
-1. Upload Video Information:
+1. **Upload Video Information**:
    - Enter the YouTube video URL in the provided field.
    - Specify the start and end times of the video clip you want to process.
    - Give a name to the output video.
    - Click the "Download and Process Video" button.
 
 
-2. Process Video:
+2. **Process Video**:
    - The application will download the specified video clip and perform object detection using YOLOv8.
    - Upon successful processing, the video will be saved in the static/videos directory.
 
 
-3. View Processed Videos:
+3. **View Processed Videos**:
    - Select any of the saved videos from the dropdown list to play it on the web interface
 
 
