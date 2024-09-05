@@ -107,18 +107,19 @@ format': 'bestvideo[height<=480][fps<=30]/best[height<=480][fps<=30]'
 ## Folder Structure
 ```plaintext
 ├── main.py                   # Main Flask application file
-├── models                    # Flask routes
+├── models                    
 │   └── yolov8n.pt            # Model (not included in the repo)
 ├── routes                    # Flask routes
 │   └── routes.py
 ├── processing
 │   └── video_processing.py   # Video processing and object detection logic
 ├── static
-│   ├── videos                # Directory where processed videos are saved
-│   └── images
+    ├── css
+│   ├── images                
+│   └── videos                # Directory where processed videos are saved
 ├── templates
 │   ├── home.html             # Home page template
-│   └── show_video.html       # Video display template
+│   └── show_video.html       # Video display page template
 ├── .env                      # Environment variables (not included in the repo)
 ├── requirements.txt          # Python dependencies
 └── README.md                 # This file
