@@ -80,6 +80,11 @@ Depending on your needs, you may choose from different YOLOv8 model sizes (small
 ### Access the application
 Open a web browser and go to http://127.0.0.1:5000
 
+<p align="center">
+  <img src="https://github.com/sgomezp/objects-detector/blob/dev/static/images/screenshot_home.png" alt="Screeshot home" width="200"/>
+</p>
+
+
 ## Usage
 1. **Upload Video Information**:
    - Enter the YouTube video URL in the provided field.
@@ -91,6 +96,10 @@ Open a web browser and go to http://127.0.0.1:5000
 2. **Process Video**:
    - The application will download the specified video clip and perform object detection using YOLOv8.
    - Upon successful processing, the video will be saved in the static/videos directory.
+
+<p align="center">
+  <img src="https://github.com/sgomezp/objects-detector/blob/dev/static/images/processed_video.png" alt="Processed video" width="200"/>
+</p>
 
 
 3. **View Processed Videos**:
