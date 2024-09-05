@@ -81,7 +81,7 @@ Depending on your needs, you may choose from different YOLOv8 model sizes (small
 Open a web browser and go to http://127.0.0.1:5000
 
 <p align="center">
-  <img src="https://github.com/sgomezp/objects-detector/blob/dev/static/images/screenshot_home.png" alt="Screeshot home" width="200"/>
+  <img src="https://github.com/sgomezp/objects-detector/blob/dev/static/images/screenshot_home.png" alt="Screeshot home" width="600"/>
 </p>
 
 
@@ -98,7 +98,7 @@ Open a web browser and go to http://127.0.0.1:5000
    - Upon successful processing, the video will be saved in the static/videos directory.
 
 <p align="center">
-  <img src="https://github.com/sgomezp/objects-detector/blob/dev/static/images/processed_video.png" alt="Processed video" width="200"/>
+  <img src="https://github.com/sgomezp/objects-detector/blob/dev/static/images/processed_video.png" alt="Processed video" width="600"/>
 </p>
 
 
